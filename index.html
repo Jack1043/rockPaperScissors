@@ -12,16 +12,21 @@
             switch(computerChoiceInt){
                 case 0:
                     console.log("Rock");
-                    return "Rock";
+                    return 1;
                 case 1:
                     console.log("Paper");
-                    return "Paper";
+                    return 2;
                 case 2:
                     console.log("Scissor");
-                    return "Scissor";
+                    return 3;
             }
         }
-        getComputerChoice();        
+        let getPlayerChoice = () => {
+            let playerChoiceInt = prompt("please choose what to play : 1 = Rock | 2 = Scissors | 3 = Papers")
+            console.log(playerChoiceInt);
+        }
+        getComputerChoice();
+        getPlayerChoice();       
     </script>
 </body>
 </html>
