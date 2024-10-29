@@ -14,19 +14,16 @@
             let computerChoiceInt = Math.floor(Math.random() * 3);
             switch(computerChoiceInt){
                 case 0:
-                    console.log("rock");
                     return "rock";
                 case 1:
-                    console.log("paper");
                     return "paper";
                 case 2:
-                    console.log("scissor");
                     return "scissor";
             }
         }
 
         let getPlayerChoice = () => {
-            let playerChoiceInt = prompt("please choose what to play : Rock | Paper | Scissors")
+            let playerChoiceInt = prompt("please choose what to play : Rock | Paper | Scissors");
             playerChoiceInt = playerChoiceInt.toLocaleLowerCase();
             console.log(playerChoiceInt);
             return playerChoiceInt;
@@ -39,11 +36,11 @@
                         console.log("Computer has played rock, you have drawed");
                         return;
                     case "paper":
-                        console.log("Computer has played paper, you have lost")
+                        console.log("Computer has played paper, you have lost");
                         computerScore ++;
                         return;
                     case "scissor":
-                        console.log("Computer has player scissors, you have won")
+                        console.log("Computer has player scissors, you have won");
                         humanScore ++;
                         return;
                 }
@@ -55,10 +52,10 @@
                         humanScore ++;
                         return;
                     case "paper":
-                        console.log("Computer has played paper, you have drawed")
+                        console.log("Computer has played paper, you have drawed");
                         return;
-                    case "scissor":won
-                        console.log("Computer has player scissors, you have lost")
+                    case "scissor":
+                        console.log("Computer has player scissors, you have lost");
                         computerScore ++;
                         return;
                 }
@@ -70,17 +67,26 @@
                         computerScore ++;
                         return;
                     case "paper":
-                        console.log("Computer has played paper, you have won")
+                        console.log("Computer has played paper, you have won");
                         humanScore ++;
                         return;
                     case "scissor":
-                        console.log("Computer has player scissors, you have drawed")
+                        console.log("Computer has player scissors, you have drawed");
                         return;
                 }
             }
         }
-        playRound(getComputerChoice(), getPlayerChoice());
-        console.log("current score H:"+humanScore+" C:"+computerScore);
+
+        let playGame = () =>{
+            let x = 0;
+            while (x < 5){
+                playRound(getComputerChoice(), getPlayerChoice());
+                x++;
+            }
+        }
+
+        playGame();
+        console.log("Final score | H:"+humanScore+" C:"+computerScore);
         
     </script>
 </body>
