@@ -3,12 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock, paper scissors</title>
 </head>
 <body>
-    <script>        
+    <p>Make your choice</p>
+    <div class="buttonsContainer">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissor">Scissors</button>        
+    </div>
+    <div class="resultsContainer">
+        <p id="scoreDisplay"></p>
+        <p id="resultDisplay"></p>
+        <p id="winnerDisplay"></p>
+    </div>
+    <script>               
         let humanScore = 0;
         let computerScore = 0;
+
+        let displayResult = (result) =>{
+            document.getElementById("scoreDisplay").innerHTML = ("Current score human: " + humanScore + " | computer: " + computerScore);
+            document.getElementById("resultDisplay").innerHTML = result;
+            document.getElementById("winnerDisplay").innerHTML = "";  
+            if(humanScore == 5){
+                document.getElementById("winnerDisplay").innerHTML = "You have won the round";                
+                humanScore = 0
+                computerScore = 0
+            }
+            else if(computerScore == 5){
+                document.getElementById("winnerDisplay").innerHTML = "You have lost the round";                
+                humanScore = 0
+                computerScore = 0
+            }              
+        };
 
         let getComputerChoice = () => {
             let computerChoiceInt = Math.floor(Math.random() * 3);
@@ -18,76 +45,61 @@
                 case 1:
                     return "paper";
                 case 2:
-                    return "scissor";
+                    return "scissors";
             }
-        }
-
-        let getPlayerChoice = () => {
-            let playerChoiceInt = prompt("please choose what to play : Rock | Paper | Scissors");
-            playerChoiceInt = playerChoiceInt.toLocaleLowerCase();
-            console.log(playerChoiceInt);
-            return playerChoiceInt;
         }
 
         let playRound = (computerChoice, humanChoice) => {
             if(humanChoice == "rock"){
                 switch(computerChoice){
                     case "rock":
-                        console.log("Computer has played rock, you have drawed");
+                        displayResult("Computer has played rock, you have drawed");
                         return;
                     case "paper":
-                        console.log("Computer has played paper, you have lost");
                         computerScore ++;
+                        displayResult("Computer has played paper, you have lost");
                         return;
-                    case "scissor":
-                        console.log("Computer has player scissors, you have won");
+                    case "scissors":
                         humanScore ++;
+                        displayResult("Computer has player scissors, you have won");
                         return;
                 }
             }
             else if(humanChoice == "paper"){
                 switch(computerChoice){
                     case "rock":
-                        console.log("Computer has played rock, you have won");
                         humanScore ++;
+                        displayResult("Computer has played rock, you have won");
                         return;
                     case "paper":
-                        console.log("Computer has played paper, you have drawed");
+                        displayResult("Computer has played paper, you have drawed");
                         return;
-                    case "scissor":
-                        console.log("Computer has player scissors, you have lost");
+                    case "scissors":
                         computerScore ++;
+                        displayResult("Computer has player scissors, you have lost");
                         return;
                 }
             }
             else if(humanChoice == "scissors"){
                 switch(computerChoice){
                     case "rock":
-                        console.log("Computer has played rock, you have lost");
                         computerScore ++;
+                        displayResult("Computer has played rock, you have lost");
                         return;
                     case "paper":
-                        console.log("Computer has played paper, you have won");
                         humanScore ++;
+                        displayResult("Computer has played paper, you have won");  
                         return;
-                    case "scissor":
-                        console.log("Computer has player scissors, you have drawed");
+                    case "scissors":
+                        displayResult("Computer has player scissors, you have drawed");
                         return;
                 }
             }
         }
 
-        let playGame = () =>{
-            let x = 0;
-            while (x < 5){
-                playRound(getComputerChoice(), getPlayerChoice());
-                x++;
-            }
-        }
-
-        playGame();
-        console.log("Final score | H:"+humanScore+" C:"+computerScore);
-        
+        document.getElementById("rock").addEventListener("click", function() {playRound(getComputerChoice(), "rock")});
+        document.getElementById("paper").addEventListener("click", function() {playRound(getComputerChoice(), "paper")});
+        document.getElementById("scissor").addEventListener("click", function() {playRound(getComputerChoice(), "scissors")});  
     </script>
 </body>
 </html>
